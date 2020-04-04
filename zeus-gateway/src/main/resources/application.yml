@@ -1,0 +1,45 @@
+server:
+  port: 9000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8801/eureka/
+    registerWithEureka: true
+  instance:
+    prefer-ip-address: true # 优先注册IP地址而不是hostname
+    healthcheck:
+      enabled: true
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+      routes:
+        - id: ribbon-consumer
+          uri: lb://RIBBON-CONSUMER
+          predicates:
+            - Path=/ribbon-consumer/**
+          filters:
+            - StripPrefix=1
+
+        - id: feign
+          uri: lb://FEIGN
+          predicates:
+            - Path=/feign/**
+          filters:
+            - StripPrefix=1
+
+        - id: ribbon-provider
+          uri: lb://RIBBON-PROVIDER
+          predicates:
+            - Path=/ribbon-provider/**
+          filters:
+            - StripPrefix=1
+
+
+

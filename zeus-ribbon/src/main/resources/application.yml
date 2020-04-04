@@ -1,0 +1,16 @@
+server:
+  port: 8802
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8801/eureka/
+    registerWithEureka: true
+  instance:
+    prefer-ip-address: true # 优先注册IP地址而不是hostname
+    healthcheck:
+      enabled: true
+spring:
+  application:
+    name: ribbon-provider
+

@@ -1,0 +1,16 @@
+server:
+  port: 8804
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8801/eureka/
+    registerWithEureka: true
+  instance:
+    prefer-ip-address: true
+    healthcheck:
+      enabled: true
+
+spring:
+  application:
+    name: feign

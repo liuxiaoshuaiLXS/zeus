@@ -1,0 +1,12 @@
+server:
+  port: 8803
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8801/eureka/
+    registerWithEureka: true
+
+spring:
+  application:
+    name: ribbon-consumer

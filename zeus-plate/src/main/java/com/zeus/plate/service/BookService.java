@@ -40,4 +40,8 @@ public class BookService {
         return bookDao.findAllByCategory(category);
     }
 
+    public List<Book> search(String keywords) {
+        return bookDao.findAllByTitleLikeOrAuthorLike('%' + keywords + '%', '%' + keywords + '%');
+    }
+
 }
